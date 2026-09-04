@@ -1,0 +1,39 @@
+id = "hotnugs.emoji-time"
+name = "Emoji Time"
+version = "0.1.0"
+min_herdr_version = "0.8.2"
+description = "Put an emoji to the left of a space, tab or agent name"
+platforms = ["linux", "macos"]
+
+[[startup]]
+command = ["python3", "restore.py"]
+
+[[actions]]
+id = "pick"
+title = "Emoji for this space"
+contexts = ["workspace"]
+command = ["python3", "pick.py", "space"]
+
+[[actions]]
+id = "pick-tab"
+title = "Emoji for this tab"
+contexts = ["tab"]
+command = ["python3", "pick.py", "tab"]
+
+[[actions]]
+id = "pick-agent"
+title = "Emoji for this agent"
+contexts = ["pane"]
+command = ["python3", "pick.py", "agent"]
+
+[[panes]]
+id = "picker"
+title = "Emoji"
+placement = "popup"
+width = "60%"
+height = "70%"
+command = ["python3", "picker.py"]
+
+[[events]]
+on = "pane.agent_detected"
+command = ["python3", "restore.py"]
